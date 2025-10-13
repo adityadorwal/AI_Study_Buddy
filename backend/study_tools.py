@@ -11,16 +11,14 @@ Ready for GitHub and Streamlit integration.
 """
 
 import os
-from dotenv import load_dotenv
 import google.generativeai as genai
 
-# 🔐 Load environment variables
-load_dotenv()
+# 🔐 Configure Gemini API key from environment (works locally or on Streamlit Cloud)
+api_key = os.getenv("GOOGLE_API_KEY")
+if not api_key:
+    raise ValueError("⚠️ GOOGLE_API_KEY not found in environment variables! Set it in .env or Streamlit secrets.")
 
-# ✅ Configure Gemini API key
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-
-
+genai.configure(api_key=api_key)
 
 # ✅ Initialize model (latest stable)
 model = genai.GenerativeModel("models/gemini-2.0-flash")
@@ -105,6 +103,9 @@ def generate_flashcards(text: str, num_cards: int = 5) -> str:
         return f"⚠️ Error while generating flashcards: {e}"
 
 
+# ------------------------------- #
+# Test script when run standalone
+# ------------------------------- #
 if __name__ == "__main__":
     print("🧠 AI Study Buddy — Backend Test\n")
 
