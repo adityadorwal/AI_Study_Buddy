@@ -12,12 +12,14 @@ Ready for GitHub and Streamlit integration.
 
 import os
 from dotenv import load_dotenv
-
-import streamlit as st
 import google.generativeai as genai
 
-api_key = st.secrets["GOOGLE_API_KEY"]
-genai.configure(api_key=api_key)
+# 🔐 Load environment variables
+load_dotenv()
+
+# ✅ Configure Gemini API key
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+
 
 
 # ✅ Initialize model (latest stable)
