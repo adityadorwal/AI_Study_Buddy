@@ -68,29 +68,31 @@ def switch_to(tab_name: str):
 # --------------------------
 # Helper: Parse quiz text
 # --------------------------
-# def parse_quiz(quiz_text):
-#     questions = re.split(r'(?=Q\d+\.)', quiz_text)
-#     parsed = []
-#     for q in questions:
-#         q = q.strip()
-#         if not q:
-#             continue
-#         lines = q.splitlines()
-#         question_line = lines[0].strip()
-#         question_text = re.sub(r'^Q\d+\.\s*', '', question_line)
-#         options = []
-#         correct = None
-#         for line in lines[1:]:
-#             if re.match(r'^[A-D][\)\.]', line.strip()):
-#                 options.append(line.strip()[2:].strip())
-#             elif line.strip().lower().startswith("answer:"):
-#                 correct = line.split(":")[-1].strip().upper()
-#         parsed.append({
-#             "question": question_text,
-#             "options": options,
-#             "correct": correct
-#         })
-#     return parsed
+
+def parse_quiz(quiz_text):
+    questions = re.split(r'(?=Q\d+\.)', quiz_text)
+    parsed = []
+    for q in questions:
+        q = q.strip()
+        if not q:
+            continue
+        lines = q.splitlines()
+        question_line = lines[0].strip()
+        question_text = re.sub(r'^Q\d+\.\s*', '', question_line)
+        options = []
+        correct = None
+        for line in lines[1:]:
+            if re.match(r'^[A-D][\)\.]', line.strip()):
+                options.append(line.strip()[2:].strip())
+            elif line.strip().lower().startswith("answer:"):
+                correct = line.split(":")[-1].strip().upper()
+        parsed.append({
+            "question": question_text,
+            "options": options,
+            "correct": correct
+        })
+    return parsed
+
 
 # --------------------------
 # Navigation Tabs
@@ -247,9 +249,11 @@ elif selected_tab == "❓ Generate Quiz":
             random.shuffle(q["options"])
 
             # update correct letter after shuffle
-            if correct_opt in q["options"]:
+            if correct_opt and correct_opt in q["options"]:
                 new_idx = q["options"].index(correct_opt)
                 q["correct"] = chr(ord("A") + new_idx)
+            else:
+                q["correct"] = None  # Mark as invalid question
 
 
         if quiz_data:
