@@ -16,8 +16,11 @@ import google.generativeai as genai
 # 🔐 Configure Gemini API key from environment (works locally or on Streamlit Cloud)
 api_key = os.getenv("GOOGLE_API_KEY")
 if not api_key:
-    raise ValueError("⚠️ GOOGLE_API_KEY not found in environment variables! Set it in .env or Streamlit secrets.")
-
+    raise ValueError(
+        "⚠️ GOOGLE_API_KEY not found!\n"
+        "For local: Add it to .env file\n"
+        "For Streamlit Cloud: Add to Secrets in dashboard"
+    )
 genai.configure(api_key=api_key)
 
 # ✅ Initialize model (latest stable)
