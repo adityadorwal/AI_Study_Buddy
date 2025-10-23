@@ -9,10 +9,10 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "../backend"))
 
 from study_tools import explain_topic, summarize_text, generate_quiz, generate_flashcards
 
-# -----------
-# --------------------------
+
+
 # Page config & styling
-# --------------------------
+
 st.set_page_config(page_title="AI Study Buddy", page_icon="🧠", layout="wide")
 
 page_bg = """
@@ -45,9 +45,10 @@ Type a topic or paste your notes below and let AI do the hard work. 📚
 </div>
 """, unsafe_allow_html=True)
 
-# --------------------------
+
+
 # Session state initialization
-# --------------------------
+
 defaults = {
     "explanation": "",
     "summary": "",
@@ -94,15 +95,15 @@ def parse_quiz(quiz_text):
     return parsed
 
 
-# --------------------------
+
+
 # Navigation Tabs
-# --------------------------
+
 tabs = ["📘 Explain Topic", "📝 Summarize Notes", "❓ Generate Quiz", "📚 Generate Flashcards"]
 selected_tab = st.radio("📍 Navigation", tabs, index=tabs.index(st.session_state.active_tab), horizontal=True)
 
-# --------------------------
+
 # TAB 1: Explain
-# --------------------------
 if selected_tab == "📘 Explain Topic":
     st.title("📘 Explain Topic")
     topic = st.text_input("Enter a topic to explain:", key="topic_input")
@@ -130,9 +131,8 @@ if selected_tab == "📘 Explain Topic":
             st.success("📝 Summary generated successfully!")
             switch_to("📝 Summarize Notes")
 
-# --------------------------
+
 # TAB 2: Summarize
-# --------------------------
 elif selected_tab == "📝 Summarize Notes":
     st.title("📝 Summarize Notes")
     notes = st.text_area("Paste or edit your notes:", value=st.session_state.summary or st.session_state.explanation)
@@ -157,9 +157,8 @@ elif selected_tab == "📝 Summarize Notes":
             st.success("✅ Quiz generated successfully!")
             switch_to("❓ Generate Quiz")
 
-# --------------------------
+
 # TAB 3: Interactive Quiz
-# --------------------------
 elif selected_tab == "❓ Generate Quiz":
     st.title("❓ Interactive Quiz")
 
@@ -185,7 +184,6 @@ elif selected_tab == "❓ Generate Quiz":
             st.warning("Please enter some text first.")
 
     # --- Improved Parser ---
-    import re
     def parse_quiz_text(text):
         """Parse Gemini quiz output into clean Q/A/C structure."""
         questions_raw = re.split(r'(?=Question\s*\d+)', text, flags=re.I)
@@ -325,9 +323,8 @@ elif selected_tab == "❓ Generate Quiz":
         else:
             st.info("👇 Generate a quiz above, answer all questions, then click **Submit Answers**.")
 
-# --------------------------
+
 # TAB 4: Flashcards
-# --------------------------
 elif selected_tab == "📚 Generate Flashcards":
     st.title("📚 Study Flashcards")
     flash_text = st.text_area("Paste study notes:", value=st.session_state.summary or st.session_state.explanation)
@@ -342,9 +339,8 @@ elif selected_tab == "📚 Generate Flashcards":
         st.write(st.session_state.flashcards)
         st.download_button("💾 Download Flashcards", st.session_state.flashcards, "flashcards.txt")
 
-# --------------------------
+
 # Footer
-# --------------------------
 st.markdown("""
 <hr>
 <div style="text-align:center; color:gray; font-size:0.9rem;">
