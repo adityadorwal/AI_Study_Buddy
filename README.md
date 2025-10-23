@@ -117,8 +117,8 @@ streamlit run frontend/app.py
 | Feature            | Screenshot                                                                                |
 | ------------------ | ----------------------------------------------------------------------------------------- |
 | Home Interface     | ![Home Screenshot](assets/home.png) |
-| Explanation Output | ![Explanation](assets/home.png)     |
-| Quiz & Flashcards  | ![Quiz Flashcards](assets/home.png) |
+| Explanation Output | ![Explanation](assets/summary.png)     |
+| Quiz & Flashcards  | ![Quiz Flashcards](assets/quiz.png) |
 
 ---
 
