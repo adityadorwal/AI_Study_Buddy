@@ -116,9 +116,9 @@ streamlit run frontend/app.py
 
 | Feature            | Screenshot                                                                                |
 | ------------------ | ----------------------------------------------------------------------------------------- |
-| Home Interface     | ![Home Screenshot](https://github.com/adityadorwal/AI_Study_Buddy/assets/your_image_here) |
-| Explanation Output | ![Explanation](https://github.com/adityadorwal/AI_Study_Buddy/assets/your_image_here)     |
-| Quiz & Flashcards  | ![Quiz Flashcards](https://github.com/adityadorwal/AI_Study_Buddy/assets/your_image_here) |
+| Home Interface     | ![Home Screenshot](https://github.com/adityadorwal/AI_Study_Buddy/assets/home.png) |
+| Explanation Output | ![Explanation](https://github.com/adityadorwal/AI_Study_Buddy/assets/summary.png)     |
+| Quiz & Flashcards  | ![Quiz Flashcards](https://github.com/adityadorwal/AI_Study_Buddy/assets/quiz.png) |
 
 *(You can add screenshots from your Streamlit app later by uploading to GitHub Issues → copy link → paste here.)*
 
