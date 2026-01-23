@@ -48,7 +48,7 @@ def summarize_text(text: str) -> str:
     """Summarize notes into bullet points."""
     prompt = f"""
     Summarize the following study notes into clear, concise bullet points.
-    Preserve key concepts and make it easy to review.Make the notes really sort and understandable.
+    Preserve key concepts and make it easy to review.Make the notes really short and understandable in a total consise way.
 
     Notes:
     {text}
