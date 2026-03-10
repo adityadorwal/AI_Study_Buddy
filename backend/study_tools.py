@@ -10,21 +10,25 @@ Provides tools for:
 
 import os
 import google.generativeai as genai
+from dotenv import load_dotenv
+
+# Load .env file for local development (no-op on Streamlit Cloud)
+load_dotenv()
 
 # Configure Gemini API key from environment (works locally or on Streamlit Cloud)
 api_key = os.getenv("GOOGLE_API_KEY")
 if not api_key:
     raise ValueError(
         "⚠️ GOOGLE_API_KEY not found!\n"
-        "For local: Add it to .env file\n"
-        "For Streamlit Cloud: Add to Secrets in dashboard"
+        "For local: Add it to a .env file as GOOGLE_API_KEY=your_key\n"
+        "For Streamlit Cloud: Add it under Settings → Secrets in your dashboard"
     )
-genai.configure(api_key=api_key)
 
+genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-2.0-flash")
 
 
-# Core AI Functions
+# ── Core AI Functions ────────────────────────────────────────────────────────
 
 
 def explain_topic(topic: str) -> str:
@@ -48,7 +52,8 @@ def summarize_text(text: str) -> str:
     """Summarize notes into bullet points."""
     prompt = f"""
     Summarize the following study notes into clear, concise bullet points.
-    Preserve key concepts and make it easy to review.Make the notes really short and understandable in a total consise way.
+    Preserve key concepts and make it easy to review.
+    Make the notes really short and understandable in a totally concise way.
 
     Notes:
     {text}
@@ -104,13 +109,13 @@ def generate_flashcards(text: str, num_cards: int = 5) -> str:
 
 
 if __name__ == "__main__":
-    print(" AI Study Buddy — Backend Test\n")
+    print("🧠 AI Study Buddy — Backend Test\n")
 
     topic = input("Enter a topic to explain: ")
-    print("\n Explanation:\n", explain_topic(topic))
+    print("\n📘 Explanation:\n", explain_topic(topic))
 
     text = input("\nPaste some text or short notes to summarize:\n")
-    print("\n Summary:\n", summarize_text(text))
+    print("\n📝 Summary:\n", summarize_text(text))
 
-    print("\n Quiz:\n", generate_quiz(text))
-    print("\n Flashcards:\n", generate_flashcards(text))
+    print("\n❓ Quiz:\n", generate_quiz(text))
+    print("\n🎴 Flashcards:\n", generate_flashcards(text))
