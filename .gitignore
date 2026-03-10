@@ -1,5 +1,17 @@
 __pycache__/
-.env
-*.pyc
+*.py[cod]
 *.pyo
 .DS_Store
+
+# Environment
+.env
+.streamlit/secrets.toml
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
